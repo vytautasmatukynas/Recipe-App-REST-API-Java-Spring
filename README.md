@@ -1,4 +1,4 @@
-# Recipe Website Api
+# Recipe Website REST API
 
 
 ### Work in Progress
