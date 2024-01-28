@@ -21,4 +21,7 @@ public class RecipeInstruction {
     @Column(name = "instruction_text")
     String text;
 
+    public RecipeInstruction(String text) {
+        this.text = text;
+    }
 }

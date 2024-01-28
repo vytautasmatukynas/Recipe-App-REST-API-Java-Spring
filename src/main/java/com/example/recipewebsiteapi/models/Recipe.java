@@ -43,6 +43,13 @@ public class Recipe {
     @Column(name = "update_date")
     String updateDate;
 
+    public Recipe(String recipeName, String dishType, String prepTime, String updateDate) {
+        this.recipeName = recipeName;
+        this.dishType = dishType;
+        this.prepTime = prepTime;
+        this.updateDate = updateDate;
+    }
+
     public void addInstructions(RecipeInstruction instruction) {
         if (instructions == null) {
             instructions = new ArrayList<>();

@@ -21,4 +21,7 @@ public class IngredientUnit {
     @Column(name = "unit_name")
     String name;
 
+    public IngredientUnit(String name) {
+        this.name = name;
+    }
 }

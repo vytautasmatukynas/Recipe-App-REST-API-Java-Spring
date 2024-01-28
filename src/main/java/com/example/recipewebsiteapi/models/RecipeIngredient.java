@@ -29,4 +29,9 @@ public class RecipeIngredient {
     @Column(name = "ingredient_unit")
     String unit;
 
+    public RecipeIngredient(String name, Float count, String unit) {
+        this.name = name;
+        this.count = count;
+        this.unit = unit;
+    }
 }
