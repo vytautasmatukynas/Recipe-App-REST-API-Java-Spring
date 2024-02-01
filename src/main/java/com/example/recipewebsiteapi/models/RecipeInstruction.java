@@ -18,10 +18,16 @@ public class RecipeInstruction {
     Long id;
 
     @NotBlank
+    @Column(name = "instruction_number")
+    Long number;
+
+    @NotBlank
     @Column(name = "instruction_text")
     String text;
 
-    public RecipeInstruction(String text) {
+    public RecipeInstruction(Long number, String text) {
+        this.number = number;
         this.text = text;
     }
+
 }

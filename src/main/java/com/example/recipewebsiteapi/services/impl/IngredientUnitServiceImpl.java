@@ -1,6 +1,6 @@
 package com.example.recipewebsiteapi.services.impl;
 
-import com.example.recipewebsiteapi.Repositories.IngredientUnitRepository;
+import com.example.recipewebsiteapi.repositories.IngredientUnitRepository;
 import com.example.recipewebsiteapi.models.IngredientUnit;
 import com.example.recipewebsiteapi.services.interfaces.IngredientUnitService;
 import lombok.RequiredArgsConstructor;
@@ -37,13 +37,26 @@ public class IngredientUnitServiceImpl implements IngredientUnitService {
 
     @Override
     public IngredientUnit update(Long id, IngredientUnit ingredientUnit) {
-        IngredientUnit oldIngredientUnit = getById(id);
+        IngredientUnit existingIngredientUnit = getById(id);
 
-        oldIngredientUnit.setName(ingredientUnit.getName());
+        existingIngredientUnit.setName(ingredientUnit.getName());
 
-        ingredientUnitRepository.save(oldIngredientUnit);
+        ingredientUnitRepository.save(existingIngredientUnit);
 
-        return oldIngredientUnit;
+        return existingIngredientUnit;
     }
 
+    @Override
+    public String delete(Long id, IngredientUnit element) {
+        IngredientUnit unitToDelete = getById(id);
+
+        ingredientUnitRepository.delete(unitToDelete);
+
+        return "Unit deleted successfully: " + unitToDelete.getName();
+    }
+
+    @Override
+    public List<IngredientUnit> searchForUnit(String unitName) {
+        return ingredientUnitRepository.findByNameContainingIgnoreCase(unitName);
+    }
 }

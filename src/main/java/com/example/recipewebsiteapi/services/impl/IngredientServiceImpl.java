@@ -1,6 +1,6 @@
 package com.example.recipewebsiteapi.services.impl;
 
-import com.example.recipewebsiteapi.Repositories.IngredientRepository;
+import com.example.recipewebsiteapi.repositories.IngredientRepository;
 import com.example.recipewebsiteapi.models.Ingredient;
 import com.example.recipewebsiteapi.services.interfaces.IngredientService;
 import lombok.RequiredArgsConstructor;
@@ -28,24 +28,36 @@ public class IngredientServiceImpl implements IngredientService {
 
     @Override
     public Ingredient add(Ingredient ingredient) {
-
         Ingredient newIngredient = new Ingredient(ingredient.getName());
 
         ingredientRepository.save(newIngredient);
 
         return newIngredient;
-
     }
 
     @Override
     public Ingredient update(Long id, Ingredient ingredient) {
-        Ingredient oldIngredient = getById(id);
+        Ingredient existingIngredient = getById(id);
 
-        oldIngredient.setName(ingredient.getName());
+        existingIngredient.setName(ingredient.getName());
 
-        ingredientRepository.save(oldIngredient);
+        ingredientRepository.save(existingIngredient);
 
-        return oldIngredient;
+        return existingIngredient;
+    }
+
+    @Override
+    public String delete(Long id, Ingredient element) {
+        Ingredient ingredientToDelete = getById(id);
+
+        ingredientRepository.delete(ingredientToDelete);
+
+        return "Ingredient deleted successfully";
+    }
+
+    @Override
+    public List<Ingredient> searchForIngredient(String ingredientName) {
+        return ingredientRepository.findByNameContainingIgnoreCase(ingredientName);
     }
 
 }

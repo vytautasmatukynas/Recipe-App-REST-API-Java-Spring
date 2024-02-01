@@ -12,4 +12,6 @@ public interface AppService<T> {
 
     T update(Long id, T element);
 
+    String delete(Long id, T element);
+
 }
